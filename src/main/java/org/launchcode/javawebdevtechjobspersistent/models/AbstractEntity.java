@@ -3,6 +3,7 @@ package org.launchcode.javawebdevtechjobspersistent.models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
@@ -14,13 +15,14 @@ public abstract class AbstractEntity {
     @GeneratedValue
     private int id;
 
-    @NotNull
-    @Size(max = 250)
+    @NotBlank(message = "Must not be empty")
+    @Size(min = 3, max = 250, message = "Must be more than 3 characters.")
     private String name;
 
     public int getId() {
         return id;
     }
+
 
     public String getName() {
         return name;
